@@ -42,20 +42,19 @@ class NewPage extends React.Component {
   }
 
   componentDidMount() {
-    this.tl
-      .staggerTo(
-        this.myElements,
-        1.5,
-        {
-          autoAlpha: 1,
-          y: -200,
-          onComplete: this.tl.repeat,
-          ease: Elastic.ease,
-          yoyo: true,
-        },
-        0.2
-      )
-      .play()
+    this.tl.staggerTo(
+      this.myElements,
+      0.5,
+      {
+        autoAlpha: 1,
+        y: -200,
+        onComplete: this.cb,
+        ease: Elastic.ease,
+      },
+      0.2
+    )
+
+    cb => this.tl.reverse()
   }
 
   render() {
