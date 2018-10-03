@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TweenLite, TimelineLite } from 'gsap'
+import { TweenLite, TimelineLite, Elastic } from 'gsap/all'
 
 const mainWrap = css`
   height: 100vh;
@@ -38,14 +38,31 @@ class NewPage extends React.Component {
     this.myElement = null
     this.myElements = []
 
-    this.myTween = new TimelineLite({ paused: true })
+    this.tl = new TimelineLite()
   }
 
   componentDidMount() {
-    this.myTween.staggerTo(this.cards, 0.5, { autoAlpha: 1, y: -20 }, 0.1)
+    this.tl
+      .staggerTo(
+        this.myElements,
+        1.5,
+        {
+          autoAlpha: 1,
+          y: -200,
+          onComplete: this.tl.repeat,
+          ease: Elastic.ease,
+          yoyo: true,
+        },
+        0.2
+      )
+      .play()
   }
 
   render() {
+    // this.tl
+    //   .kill()
+    //   .clear()
+    //   .pause(0)
     const words = ['woof', 'food']
 
     console.log('this.myElements', this.myElements)
