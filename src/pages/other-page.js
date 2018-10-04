@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TweenLite, TimelineLite, Elastic } from 'gsap/all'
+import { TweenLite, TimelineLite, Elastic, Back, Power2 } from 'gsap/all'
 
 const mainWrap = css`
   height: 100vh;
@@ -30,6 +30,7 @@ const wordWrap = css`
 
 const proj1letter = css`
   // display: inline-block;
+  width: 100px;
 `
 
 class NewPage extends React.Component {
@@ -47,9 +48,12 @@ class NewPage extends React.Component {
       0.5,
       {
         autoAlpha: 1,
-        y: -200,
-        onComplete: this.cb,
-        ease: Elastic.ease,
+        // y: -200,
+        // onComplete: this.cb,
+        ease: Power2.easeInOut,
+        cycle: { y: [-20, 20] },
+        repeat: -1,
+        yoyo: true,
       },
       0.2
     )
@@ -62,7 +66,7 @@ class NewPage extends React.Component {
     //   .kill()
     //   .clear()
     //   .pause(0)
-    const words = ['woof', 'food']
+    const words = ['woof said the birdy', 'food']
 
     console.log('this.myElements', this.myElements)
     return (
