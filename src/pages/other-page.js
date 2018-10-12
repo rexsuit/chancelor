@@ -4,7 +4,7 @@ import React from 'react'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TweenLite, TimelineLite, Elastic, Back, Power2 } from 'gsap'
+import { TimelineLite, Power2, TimelineMax } from 'gsap'
 
 const mainWrap = css`
   height: 100vh;
@@ -17,7 +17,7 @@ const projectWrap = css`
   align-items: center;
   // height: 100%;
   width: 100%;
-  background: #faa486;
+  background: orange;
   flex-direction: column;
 `
 
@@ -36,6 +36,7 @@ const proj1letter = css`
 const ciircle = css`
   position: absolute;
   background: #ff6200;
+  opacity: 0.6;
   width: 30px;
   height: 30px;
   border-radius: 100%;
