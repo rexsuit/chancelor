@@ -4,7 +4,7 @@ import React from 'react'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TimelineLite, Power2, TimelineMax } from 'gsap'
+import { TimelineLite, Power2, TimelineMax, TweenMax } from 'gsap'
 
 const mainWrap = css`
   height: 100vh;
