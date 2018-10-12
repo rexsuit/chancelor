@@ -133,7 +133,7 @@ class NewPage extends React.Component {
   }
 
   render() {
-    const words = ['woof said the birdy', 'food']
+    const words = ['woof said the birdy', 'food', 'good']
 
     console.log('this.myElements', this.myElements)
     return (
