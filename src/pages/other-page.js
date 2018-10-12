@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+// import { Link, graphql } from 'gatsby'
+// import Helmet from 'react-helmet'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
@@ -17,7 +17,7 @@ const projectWrap = css`
   align-items: center;
   // height: 100%;
   width: 100%;
-  background: orange;
+  background: #faa486;
   flex-direction: column;
 `
 
@@ -33,13 +33,40 @@ const proj1letter = css`
   width: 100px;
 `
 
+const ciircle = css`
+  position: absolute;
+  background: #ff6200;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  box-shadow: '0px 0px 4px 0px #FF6200';
+`
+
+const ciirclesWrap = css`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+`
+
 class NewPage extends React.Component {
   constructor(props) {
     super(props)
     this.myElement = null
     this.myElements = []
 
-    this.tl = new TimelineLite()
+    this.tl = new TimelineLite({ paused: false })
+    this.tl2 = new TimelineMax({ repeat: -1, paused: false })
+    this.html = []
+    this.dotsCount = 175
+    this.container
+    this.dots = []
+
+    // setup
+    for (var i = 0; i < this.dotsCount; i++) {
+      this.html.push(i)
+    }
   }
 
   componentDidMount() {
@@ -48,8 +75,6 @@ class NewPage extends React.Component {
       0.5,
       {
         autoAlpha: 1,
-        // y: -200,
-        // onComplete: this.cb,
         ease: Power2.easeInOut,
         cycle: { y: [Math.random() * -200, Math.random() * 300] },
         repeat: -1,
@@ -58,14 +83,55 @@ class NewPage extends React.Component {
       0.2
     )
 
-    cb => this.tl.reverse()
+    this.random = (min, max) => {
+      return Math.floor(Math.random() * (1 + max - min) + min)
+    }
+
+    console.log('this.html', this.html)
+    console.log('this.dots', this.dots)
+
+    this.dots.forEach(a => {
+      this.tl2.add(
+        TweenMax.fromTo(
+          a,
+          6,
+          {
+            left: this.random(0, 100) + '%',
+            top: this.random(0, 100) + '%',
+            z: this.random(-725, 600),
+            opacity: Math.random(),
+          },
+          {
+            left: '+=' + this.random(-40, 40) + '%',
+            top: '+=' + this.random(-36, 36) + '%',
+            z: '+=' + this.random(-725, 600),
+            opacity: Math.random() + 0.1,
+            repeat: 1,
+            yoyo: true,
+            ease: Sine.easeInOut,
+          }
+        ),
+        0
+      )
+    })
+
+    this.tl2
+      .fromTo(
+        this.container,
+        0.8,
+        { perspective: 50, opacity: 0.55 },
+        { perspective: 215, opacity: 0.9, ease: Sine.easeInOut },
+        3.25
+      )
+      .to(
+        this.container,
+        0.8,
+        { perspective: 50, opacity: 0.55, ease: Sine.easeInOut },
+        6.5
+      )
   }
 
   render() {
-    // this.tl
-    //   .kill()
-    //   .clear()
-    //   .pause(0)
     const words = ['woof said the birdy', 'food']
 
     console.log('this.myElements', this.myElements)
@@ -82,6 +148,16 @@ class NewPage extends React.Component {
                 {letter}
               </div>
             ))}
+            <div className={ciirclesWrap} ref={div => (this.container = div)}>
+              {this.html !== [] &&
+                this.html.map((a, index) => (
+                  <div
+                    key={uniqueId(words[0])}
+                    ref={div => (this.dots[index] = div)}
+                    className={ciircle}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>
