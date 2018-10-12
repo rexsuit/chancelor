@@ -4,7 +4,7 @@ import React from 'react'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TimelineLite, Power2, TimelineMax, TweenMax } from 'gsap'
+import { TimelineLite, Power2, TimelineMax, TweenMax, Sine } from 'gsap'
 
 const mainWrap = css`
   height: 100vh;
@@ -40,7 +40,7 @@ const ciircle = css`
   width: 30px;
   height: 30px;
   border-radius: 100%;
-  box-shadow: '0px 0px 4px 0px #FF6200';
+  box-shadow: 0px 0px 4px 0px #ff6200;
 `
 
 const ciirclesWrap = css`
