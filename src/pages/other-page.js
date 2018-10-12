@@ -58,7 +58,7 @@ class NewPage extends React.Component {
     this.myElements = []
 
     this.tl = new TimelineLite({ paused: false })
-    this.tl2 = new TimelineMax({ repeat: -1, paused: false })
+    this.tl2 = new TimelineLite({ repeat: -1, paused: false })
     this.html = []
     this.dotsCount = 175
     this.container
