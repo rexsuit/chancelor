@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TweenLite, TimelineLite, Elastic, Back, Power2 } from 'gsap/all'
+import { TweenLite, TimelineLite, Elastic, Back, Power2 } from 'gsap'
 
 const mainWrap = css`
   height: 100vh;
@@ -51,7 +51,7 @@ class NewPage extends React.Component {
         // y: -200,
         // onComplete: this.cb,
         ease: Power2.easeInOut,
-        cycle: { y: [-20, 20] },
+        cycle: { y: [Math.random() * -200, Math.random() * 300] },
         repeat: -1,
         yoyo: true,
       },
