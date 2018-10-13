@@ -62,7 +62,7 @@ class NewPage extends React.Component {
     this.html = []
     this.dotsCount = 175
     this.container
-    this.dots = []
+    this.dotRefs = []
 
     // setup
     for (var i = 0; i < this.dotsCount; i++) {
@@ -89,9 +89,9 @@ class NewPage extends React.Component {
     }
 
     console.log('this.html', this.html)
-    console.log('this.dots', this.dots)
+    console.log('this.dotRefs', this.dotRefs)
 
-    this.dots.forEach(a => {
+    this.dotRefs.forEach(a => {
       this.tl2.add(
         TweenMax.fromTo(
           a,
@@ -154,7 +154,7 @@ class NewPage extends React.Component {
                 this.html.map((a, index) => (
                   <div
                     key={uniqueId(words[0])}
-                    ref={div => (this.dots[index] = div)}
+                    ref={div => (this.dotRefs[index] = div)}
                     className={ciircle}
                   />
                 ))}
