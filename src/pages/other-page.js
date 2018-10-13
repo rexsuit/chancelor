@@ -4,7 +4,7 @@ import React from 'react'
 import '../css/reset.css'
 import { uniqueId } from 'lodash-es'
 import { css } from 'emotion'
-import { TimelineLite, Power2, TimelineMax, TweenMax, Sine } from 'gsap'
+import { Power2, TimelineMax, TweenMax, Sine } from 'gsap'
 
 const mainWrap = css`
   height: 100vh;
@@ -57,10 +57,10 @@ class NewPage extends React.Component {
     this.myElement = null
     this.myElements = []
 
-    this.tl = new TimelineLite({ paused: false })
-    this.tl2 = new TimelineMax({ repeat: -1, paused: false })
+    this.tl = new TimelineMax({})
+    this.tl2 = new TimelineMax({})
     this.html = []
-    this.dotsCount = 66
+    this.dotsCount = 166
     this.container
     this.dotRefs = []
 
@@ -100,16 +100,21 @@ class NewPage extends React.Component {
             left: this.random(0, 100) + '%',
             top: this.random(0, 100) + '%',
             z: this.random(-725, 600),
+            // cycle: { width: [50, 300] },
             opacity: Math.random(),
+            backgroundColor: '#b05089',
+            // repeat: -1,
+            // yoyo: true,
           },
           {
             left: '+=' + this.random(-40, 40) + '%',
             top: '+=' + this.random(-36, 36) + '%',
             z: '+=' + this.random(-725, 600),
             opacity: Math.random() + 0.1,
-            repeat: 1,
+            backgroundColor: '#ecd014',
+            repeat: -1,
             yoyo: true,
-            ease: Sine.easeInOut,
+            ease: Power2.easeInOut,
           }
         ),
         0
@@ -121,13 +126,13 @@ class NewPage extends React.Component {
         this.container,
         0.8,
         { perspective: 50, opacity: 0.55 },
-        { perspective: 2150, opacity: 0.9, ease: Sine.easeInOut },
+        { perspective: 2150, opacity: 0.9, ease: Power2.easeInOut },
         3.25
       )
       .to(
         this.container,
         0.8,
-        { perspective: 50, opacity: 0.55, ease: Sine.easeInOut },
+        { perspective: 50, opacity: 0.55, ease: Power2.easeInOut },
         6.5
       )
   }
