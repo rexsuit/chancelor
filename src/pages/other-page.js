@@ -60,7 +60,7 @@ class NewPage extends React.Component {
     this.tl = new TimelineLite({ paused: false })
     this.tl2 = new TimelineMax({ repeat: -1, paused: false })
     this.html = []
-    this.dotsCount = 175
+    this.dotsCount = 66
     this.container
     this.dotRefs = []
 
@@ -77,7 +77,7 @@ class NewPage extends React.Component {
       {
         autoAlpha: 1,
         ease: Power2.easeInOut,
-        cycle: { y: [Math.random() * -200, Math.random() * 300] },
+        cycle: { y: [Math.random() * -2000, Math.random() * 300] },
         repeat: -1,
         yoyo: true,
       },
@@ -121,7 +121,7 @@ class NewPage extends React.Component {
         this.container,
         0.8,
         { perspective: 50, opacity: 0.55 },
-        { perspective: 215, opacity: 0.9, ease: Sine.easeInOut },
+        { perspective: 2150, opacity: 0.9, ease: Sine.easeInOut },
         3.25
       )
       .to(
